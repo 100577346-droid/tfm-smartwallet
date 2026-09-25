@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="12.0.005">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="12.0.005" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="1992"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="12.0.005" expanded="true" height="68" name="Read CSV" width="90" x="45" y="34">
+        <parameter key="csv_file" value="D:\Master\TFM\DATOS\union_dataset.csv"/>
+        <parameter key="column_separators" value=";"/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value=","/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Europe/Madrid"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="windows-1252"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="idCliente.true.integer.attribute"/>
+          <parameter key="1" value="edad.true.integer.attribute"/>
+          <parameter key="2" value="cp.true.polynominal.attribute"/>
+          <parameter key="3" value="latitud_hogar.true.real.attribute"/>
+          <parameter key="4" value="longitud_hogar.true.real.attribute"/>
+          <parameter key="5" value="tipo_empleo.true.polynominal.attribute"/>
+          <parameter key="6" value="nivel_estudios.true.polynominal.attribute"/>
+          <parameter key="7" value="usa_fintech.true.binominal.attribute"/>
+          <parameter key="8" value="hipoteca_imp_inicial.true.integer.attribute"/>
+          <parameter key="9" value="hipoteca_impagada.true.binominal.attribute"/>
+          <parameter key="10" value="numero_hijos.true.integer.attribute"/>
+          <parameter key="11" value="edad_hijo_mayor.true.real.attribute"/>
+          <parameter key="12" value="antiguedad_anos.true.integer.attribute"/>
+          <parameter key="13" value="tiene_hijos.true.binominal.attribute"/>
+          <parameter key="14" value="suma_ingresos.true.real.attribute"/>
+          <parameter key="15" value="tiene_ingresos_declarados.true.binominal.attribute"/>
+          <parameter key="16" value="suma_gastos.true.real.attribute"/>
+          <parameter key="17" value="num_movimientos_gasto.true.integer.attribute"/>
+          <parameter key="18" value="gasto_Alimentacion.true.real.attribute"/>
+          <parameter key="19" value="gasto_Amazon.true.real.attribute"/>
+          <parameter key="20" value="gasto_Centro_deportivo.true.real.attribute"/>
+          <parameter key="21" value="gasto_Gaming.true.real.attribute"/>
+          <parameter key="22" value="gasto_Inversion.true.real.attribute"/>
+          <parameter key="23" value="gasto_Moda.true.real.attribute"/>
+          <parameter key="24" value="gasto_Ocio_Nocturno.true.real.attribute"/>
+          <parameter key="25" value="gasto_Restaurante.true.real.attribute"/>
+          <parameter key="26" value="gasto_Seguro.true.real.attribute"/>
+          <parameter key="27" value="gasto_Suscripcion.true.real.attribute"/>
+          <parameter key="28" value="gasto_Transferencia_Internacional.true.real.attribute"/>
+          <parameter key="29" value="adoptado.true.binominal.attribute"/>
+          <parameter key="30" value="gasto_SC.true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="12.0.005" expanded="true" height="82" name="Set Role idCliente" width="90" x="179" y="34">
+        <parameter key="attribute_name" value="idCliente"/>
+        <parameter key="target_role" value="id"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes Perfil" width="90" x="313" y="34">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="adoptado|antiguedad_anos|edad|gasto_Alimentacion|gasto_Amazon|gasto_Centro_deportivo|gasto_Gaming|gasto_Inversion|gasto_Moda|gasto_Ocio_Nocturno|gasto_Restaurante|gasto_SC|gasto_Seguro|gasto_Suscripcion|gasto_Transferencia_Internacional|idCliente|latitud_hogar|longitud_hogar|nivel_estudios|numero_hijos|suma_ingresos|tiene_hijos|usa_fintech|hipoteca_impagada|num_movimientos_gasto|hipoteca_imp_inicial|edad_hijo_mayor|tiene_ingresos_declarados"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      <operator activated="true" class="nominal_to_numerical" compatibility="12.0.005" expanded="true" height="103" name="Nominal to Numerical" width="90" x="447" y="34">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="nivel_estudios|usa_fintech|hipoteca_impagada|tiene_hijos|tiene_ingresos_declarados"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="coding_type" value="dummy coding"/>
+        <parameter key="use_comparison_groups" value="true"/>
+        <list key="comparison_groups">
+          <parameter key="nivel_estudios" value="Grado"/>
+          <parameter key="usa_fintech" value="0"/>
+          <parameter key="hipoteca_impagada" value="0"/>
+          <parameter key="tiene_hijos" value="0"/>
+          <parameter key="tiene_ingresos_declarados" value="0"/>
+        </list>
+        <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+        <parameter key="use_underscore_in_name" value="true"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="12.0.005" expanded="true" height="103" name="Multiply Ramas" width="90" x="581" y="34"/>
+      <operator activated="true" class="multiply" compatibility="12.0.005" expanded="true" height="103" name="Multiply Clustering" width="90" x="715" y="34"/>
+      <operator activated="true" class="filter_examples" compatibility="12.0.005" expanded="true" height="103" name="Filter Adoptantes (train centroides)" width="90" x="849" y="34">
+        <parameter key="parameter_string" value="adoptado = 1"/>
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="12.0.005" expanded="true" height="82" name="Generar gasto_total_resto (Adoptantes)" width="90" x="983" y="34">
+        <list key="function_descriptions">
+          <parameter key="gasto_total_resto" value="gasto_Alimentacion + gasto_Amazon + gasto_Centro_deportivo + gasto_Gaming + gasto_Moda + gasto_Ocio_Nocturno + gasto_Restaurante + gasto_Seguro + gasto_Suscripcion"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="12.0.005" expanded="true" height="82" name="Aplicar log1p (Adoptantes)" width="90" x="1117" y="34">
+        <list key="function_descriptions">
+          <parameter key="num_movimientos_gasto" value="ln(max(num_movimientos_gasto,0)+1)"/>
+          <parameter key="gasto_Inversion" value="ln(max(gasto_Inversion,0)+1)"/>
+          <parameter key="gasto_Transferencia_Internacional" value="ln(max(gasto_Transferencia_Internacional,0)+1)"/>
+          <parameter key="gasto_total_resto" value="ln(max(gasto_total_resto,0)+1)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes Clustering Vars (Adoptantes)" width="90" x="1251" y="34">
+        <parameter key="attribute_filter_type" value="regular_expression"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="regular_expression" value="^(idCliente|edad|latitud_hogar|longitud_hogar|usa_fintech_1|hipoteca_impagada_1|nivel_estudios_.*|num_movimientos_gasto|gasto_Inversion|gasto_Transferencia_Internacional|gasto_total_resto)$"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="12.0.005" expanded="true" height="82" name="Multiply (2)" width="90" x="1385" y="34"/>
+      <operator activated="true" class="normalize" compatibility="12.0.005" expanded="true" height="103" name="Normalize (solo adoptantes)" width="90" x="1519" y="34">
+        <parameter key="return_preprocessing_model" value="true"/>
+        <parameter key="attribute_filter_type" value="value_type"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="method" value="Z-transformation"/>
+        <parameter key="min" value="0.0"/>
+        <parameter key="max" value="1.0"/>
+        <parameter key="allow_negative_values" value="false"/>
+      </operator>
+      <operator activated="true" class="k_means" compatibility="12.0.005" expanded="true" height="82" name="Clustering K-Means" width="90" x="1653" y="34">
+        <parameter key="add_cluster_attribute" value="true"/>
+        <parameter key="add_as_label" value="false"/>
+        <parameter key="remove_unlabeled" value="false"/>
+        <parameter key="k" value="8"/>
+        <parameter key="max_runs" value="25"/>
+        <parameter key="determine_good_start_values" value="false"/>
+        <parameter key="measure_types" value="NumericalMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="EuclideanDistance"/>
+        <parameter key="divergence" value="SquaredEuclideanDistance"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+        <parameter key="max_optimization_steps" value="100"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="aggregate" compatibility="11.1.001" expanded="true" height="82" name="Aggregate Centroides" width="90" x="1787" y="34">
+        <parameter key="use_default_aggregation" value="true"/>
+        <parameter key="attribute_filter_type" value="value_type"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes"/>
+        <parameter key="group_by_attributes" value="cluster"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="12.0.005" expanded="true" height="103" name="Multiply" width="90" x="1921" y="34"/>
+      <operator activated="true" class="filter_examples" compatibility="12.0.005" expanded="true" height="103" name="Filter No Adoptantes (a puntuar)" width="90" x="849" y="284">
+        <parameter key="parameter_string" value="adoptado = 0"/>
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="12.0.005" expanded="true" height="82" name="Generar gasto_total_resto (No Adoptantes)" width="90" x="983" y="284">
+        <list key="function_descriptions">
+          <parameter key="gasto_total_resto" value="gasto_Alimentacion + gasto_Amazon + gasto_Centro_deportivo + gasto_Gaming + gasto_Moda + gasto_Ocio_Nocturno + gasto_Restaurante + gasto_Seguro + gasto_Suscripcion"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="12.0.005" expanded="true" height="82" name="Aplicar log1p (No Adoptantes)" width="90" x="1117" y="284">
+        <list key="function_descriptions">
+          <parameter key="num_movimientos_gasto" value="ln(max(num_movimientos_gasto,0)+1)"/>
+          <parameter key="gasto_Inversion" value="ln(max(gasto_Inversion,0)+1)"/>
+          <parameter key="gasto_Transferencia_Internacional" value="ln(max(gasto_Transferencia_Internacional,0)+1)"/>
+          <parameter key="gasto_total_resto" value="ln(max(gasto_total_resto,0)+1)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes Clustering Vars (No Adoptantes)" width="90" x="1251" y="284">
+        <parameter key="attribute_filter_type" value="regular_expression"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="regular_expression" value="^(idCliente|edad|latitud_hogar|longitud_hogar|usa_fintech_1|hipoteca_impagada_1|nivel_estudios_.*|num_movimientos_gasto|gasto_Inversion|gasto_Transferencia_Internacional|gasto_total_resto)$"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="12.0.005" expanded="true" height="82" name="Apply Model Normalize" width="90" x="1385" y="284">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="12.0.005" expanded="true" height="82" name="Apply Model Cluster" width="90" x="1519" y="284">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="join" compatibility="12.0.005" expanded="true" height="82" name="Join por Cluster" width="90" x="1653" y="284">
+        <parameter key="remove_double_attributes" value="false"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="cluster" value="cluster"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="12.0.005" expanded="true" height="82" name="Generate Distancia Centroide" width="90" x="1787" y="284">
+        <list key="function_descriptions">
+          <parameter key="distancia_centroide" value="sqrt(&#10;  ([edad] - [average(edad)])^2 +&#10;  ([latitud_hogar] - [average(latitud_hogar)])^2 +&#10;  ([longitud_hogar] - [average(longitud_hogar)])^2 +&#10;  ([num_movimientos_gasto] - [average(num_movimientos_gasto)])^2 +&#10;  ([gasto_Inversion] - [average(gasto_Inversion)])^2 +&#10;  ([gasto_Transferencia_Internacional] - [average(gasto_Transferencia_Internacional)])^2 +&#10;  ([gasto_total_resto] - [average(gasto_total_resto)])^2 +&#10;  ([usa_fintech_1] - [average(usa_fintech_1)])^2 +&#10;  ([hipoteca_impagada_1] - [average(hipoteca_impagada_1)])^2 +&#10;  ([nivel_estudios_Postgrado] - [average(nivel_estudios_Postgrado)])^2 +&#10;  ([nivel_estudios_Primarios] - [average(nivel_estudios_Primarios)])^2 +&#10;  ([nivel_estudios_Secundarios] - [average(nivel_estudios_Secundarios)])^2&#10;)"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes Clustering Final" width="90" x="1921" y="284">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="cluster|distancia_centroide|idCliente"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="12.0.005" expanded="true" height="82" name="Set Role gasto_SC" width="90" x="715" y="544">
+        <parameter key="attribute_name" value="gasto_SC"/>
+        <parameter key="target_role" value="label"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="12.0.005" expanded="true" height="103" name="Multiply Regresion" width="90" x="849" y="544"/>
+      <operator activated="true" class="filter_examples" compatibility="12.0.005" expanded="true" height="103" name="Filter Adoptantes (train regresion)" width="90" x="983" y="474">
+        <parameter key="parameter_string" value="adoptado = 1"/>
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes (2)" width="90" x="1117" y="484">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="adoptado"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="split_data" compatibility="12.0.005" expanded="true" height="103" name="Split Data" width="90" x="1251" y="484">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.7"/>
+          <parameter key="ratio" value="0.3"/>
+        </enumeration>
+        <parameter key="sampling_type" value="shuffled sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="12.0.005" expanded="true" height="103" name="Filter No Adoptantes (a estimar gasto)" width="90" x="983" y="654">
+        <parameter key="parameter_string" value="adoptado = 0"/>
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="attribute_value_filter"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list"/>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes (3)" width="90" x="1184" y="684">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="a subset"/>
+        <parameter key="select_attribute" value=""/>
+        <parameter key="select_subset" value="adoptado"/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:parallel_random_forest" compatibility="12.0.005" expanded="true" height="103" name="Random Forest" width="90" x="1385" y="394">
+        <parameter key="number_of_trees" value="300"/>
+        <parameter key="criterion" value="least_square"/>
+        <parameter key="maximal_depth" value="-1"/>
+        <parameter key="apply_pruning" value="false"/>
+        <parameter key="confidence" value="0.1"/>
+        <parameter key="apply_prepruning" value="false"/>
+        <parameter key="minimal_gain" value="0.01"/>
+        <parameter key="minimal_leaf_size" value="5"/>
+        <parameter key="minimal_size_for_split" value="10"/>
+        <parameter key="number_of_prepruning_alternatives" value="3"/>
+        <parameter key="random_splits" value="false"/>
+        <parameter key="guess_subset_ratio" value="false"/>
+        <parameter key="subset_ratio" value="0.296"/>
+        <parameter key="voting_strategy" value="confidence vote"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="12.0.005" expanded="true" height="82" name="Apply Model Test" width="90" x="1519" y="484">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="performance_regression" compatibility="12.0.005" expanded="true" height="82" name="Performance Regresion" width="90" x="1653" y="544">
+        <parameter key="main_criterion" value="relative_error"/>
+        <parameter key="root_mean_squared_error" value="true"/>
+        <parameter key="absolute_error" value="false"/>
+        <parameter key="relative_error" value="true"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="true"/>
+        <parameter key="prediction_average" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="12.0.005" expanded="true" height="82" name="Apply Model No Adoptantes" width="90" x="1452" y="654">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="12.0.005" expanded="true" height="82" name="Select Attributes Regresion Final" width="90" x="1653" y="654">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="prediction(gasto_SC)|idCliente"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="true"/>
+      </operator>
+      <operator activated="true" class="join" compatibility="12.0.005" expanded="true" height="82" name="Join Final por idCliente" width="90" x="2189" y="353">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="write_csv" compatibility="12.0.005" expanded="true" height="82" name="Write CSV Resultado" width="90" x="2323" y="353">
+        <parameter key="csv_file" value="D:/Master/TFM/rapid minner/resultado_scoring_stablecoin.csv"/>
+        <parameter key="column_separator" value=";"/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="false"/>
+        <parameter key="date_format" value="yyyy-MM-dd HH:mm:ss"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="UTF-8"/>
+      </operator>
+      <connect from_op="Read CSV" from_port="output" to_op="Set Role idCliente" to_port="example set input"/>
+      <connect from_op="Set Role idCliente" from_port="example set output" to_op="Select Attributes Perfil" to_port="example set input"/>
+      <connect from_op="Select Attributes Perfil" from_port="example set output" to_op="Nominal to Numerical" to_port="example set input"/>
+      <connect from_op="Nominal to Numerical" from_port="example set output" to_op="Multiply Ramas" to_port="input"/>
+      <connect from_op="Multiply Ramas" from_port="output 1" to_op="Multiply Clustering" to_port="input"/>
+      <connect from_op="Multiply Ramas" from_port="output 2" to_op="Set Role gasto_SC" to_port="example set input"/>
+      <connect from_op="Multiply Clustering" from_port="output 1" to_op="Filter No Adoptantes (a puntuar)" to_port="example set input"/>
+      <connect from_op="Multiply Clustering" from_port="output 2" to_op="Filter Adoptantes (train centroides)" to_port="example set input"/>
+      <connect from_op="Filter Adoptantes (train centroides)" from_port="example set output" to_op="Generar gasto_total_resto (Adoptantes)" to_port="example set input"/>
+      <connect from_op="Generar gasto_total_resto (Adoptantes)" from_port="example set output" to_op="Aplicar log1p (Adoptantes)" to_port="example set input"/>
+      <connect from_op="Aplicar log1p (Adoptantes)" from_port="example set output" to_op="Select Attributes Clustering Vars (Adoptantes)" to_port="example set input"/>
+      <connect from_op="Select Attributes Clustering Vars (Adoptantes)" from_port="example set output" to_op="Multiply (2)" to_port="input"/>
+      <connect from_op="Multiply (2)" from_port="output 1" to_op="Normalize (solo adoptantes)" to_port="example set input"/>
+      <connect from_op="Normalize (solo adoptantes)" from_port="example set output" to_op="Clustering K-Means" to_port="example set"/>
+      <connect from_op="Normalize (solo adoptantes)" from_port="preprocessing model" to_op="Apply Model Normalize" to_port="model"/>
+      <connect from_op="Clustering K-Means" from_port="cluster model" to_op="Apply Model Cluster" to_port="model"/>
+      <connect from_op="Clustering K-Means" from_port="clustered set" to_op="Aggregate Centroides" to_port="example set input"/>
+      <connect from_op="Aggregate Centroides" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Join por Cluster" to_port="right"/>
+      <connect from_op="Multiply" from_port="output 2" to_port="result 2"/>
+      <connect from_op="Filter No Adoptantes (a puntuar)" from_port="example set output" to_op="Generar gasto_total_resto (No Adoptantes)" to_port="example set input"/>
+      <connect from_op="Generar gasto_total_resto (No Adoptantes)" from_port="example set output" to_op="Aplicar log1p (No Adoptantes)" to_port="example set input"/>
+      <connect from_op="Aplicar log1p (No Adoptantes)" from_port="example set output" to_op="Select Attributes Clustering Vars (No Adoptantes)" to_port="example set input"/>
+      <connect from_op="Select Attributes Clustering Vars (No Adoptantes)" from_port="example set output" to_op="Apply Model Normalize" to_port="unlabelled data"/>
+      <connect from_op="Apply Model Normalize" from_port="labelled data" to_op="Apply Model Cluster" to_port="unlabelled data"/>
+      <connect from_op="Apply Model Cluster" from_port="labelled data" to_op="Join por Cluster" to_port="left"/>
+      <connect from_op="Join por Cluster" from_port="join" to_op="Generate Distancia Centroide" to_port="example set input"/>
+      <connect from_op="Generate Distancia Centroide" from_port="example set output" to_op="Select Attributes Clustering Final" to_port="example set input"/>
+      <connect from_op="Select Attributes Clustering Final" from_port="example set output" to_op="Join Final por idCliente" to_port="left"/>
+      <connect from_op="Set Role gasto_SC" from_port="example set output" to_op="Multiply Regresion" to_port="input"/>
+      <connect from_op="Multiply Regresion" from_port="output 1" to_op="Filter Adoptantes (train regresion)" to_port="example set input"/>
+      <connect from_op="Multiply Regresion" from_port="output 2" to_op="Filter No Adoptantes (a estimar gasto)" to_port="example set input"/>
+      <connect from_op="Filter Adoptantes (train regresion)" from_port="example set output" to_op="Select Attributes (2)" to_port="example set input"/>
+      <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Split Data" from_port="partition 1" to_op="Random Forest" to_port="training set"/>
+      <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model Test" to_port="unlabelled data"/>
+      <connect from_op="Filter No Adoptantes (a estimar gasto)" from_port="example set output" to_op="Select Attributes (3)" to_port="example set input"/>
+      <connect from_op="Select Attributes (3)" from_port="example set output" to_op="Apply Model No Adoptantes" to_port="unlabelled data"/>
+      <connect from_op="Random Forest" from_port="model" to_op="Apply Model Test" to_port="model"/>
+      <connect from_op="Apply Model Test" from_port="labelled data" to_op="Performance Regresion" to_port="labelled data"/>
+      <connect from_op="Apply Model Test" from_port="model" to_op="Apply Model No Adoptantes" to_port="model"/>
+      <connect from_op="Performance Regresion" from_port="performance" to_port="result 1"/>
+      <connect from_op="Apply Model No Adoptantes" from_port="labelled data" to_op="Select Attributes Regresion Final" to_port="example set input"/>
+      <connect from_op="Select Attributes Regresion Final" from_port="example set output" to_op="Join Final por idCliente" to_port="right"/>
+      <connect from_op="Join Final por idCliente" from_port="join" to_op="Write CSV Resultado" to_port="input"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+    </process>
+  </operator>
+</process>
